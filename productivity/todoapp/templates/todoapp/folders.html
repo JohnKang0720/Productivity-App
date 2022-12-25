@@ -1,0 +1,19 @@
+{% extends "todoapp/layout.html" %}
+{% load static %}
+
+{% block body %}
+<section class="createfolder">
+    {% if request.user.is_authenticated %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn btn-primary" value="Create Folder">
+    </form>
+    {% endif %}
+</section>
+<section class="folder-div">
+    {% for i in folders %}
+    <div class="folder"> <a class="titlelink" href="{% url 'folder' i.title %}"> {{ i.title }} </a> </div>
+    {% endfor %}
+</section>
+{% endblock %}

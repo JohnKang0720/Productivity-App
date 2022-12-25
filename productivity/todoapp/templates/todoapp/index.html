@@ -1,0 +1,66 @@
+{% extends "todoapp/layout.html" %}
+{% load static %}
+
+{% block body %}
+<section class="index-div">
+    <section class="list">
+        <section>
+            {%if request.user.is_authenticated %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class="btn btn-primary" value="Create Todo">
+            </form>
+
+            <section class="search-bar">
+                <input type="text" id="textfield" placeholder="Search for todos..">
+            </section>
+            {% else %}
+            <h2> Please Log in to use StudyPro! </h2>
+            {% endif %}
+        </section>
+
+        <section id="container">
+            {% if user.todolist.all is not None %}
+            {% for t in user.todolist.all %}
+            <div id="todo" draggable="true">
+                <p id="title"> {{ t.title }} </p>
+                <p id="notes"> {{ t.notes }} </p>
+                <p id="date"> {{ t.dueDate }} </p>
+                {% if request.user.is_authenticated %}
+                <div>
+                    <button onclick="editTodo('{{ t.id }}')" class="btn btn-success"> Edit Todo </button>
+                    <div id="edit-div">
+                    </div>
+                </div>
+                <div>
+                    <select name="folder" id="folders">
+                        {% for i in user.folders.all %}
+                        <option value="{{ i.title }}"> {{ i.title }} </option>
+                        {% endfor %}
+                    </select>
+                    <button onclick="addToFolder('{{ t.id }}', '{{t.title}}')" class="btn btn-secondary"> Add to Folder </button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </section>
+    </section>
+
+    <section class="finished" id="container">
+        {% if request.user.is_authenticated %}
+        <h1> Finished Tasks </h1>
+        <div>
+            {% for t in user.finished_list.all %}
+            <div class="finished_todos">
+                <p id="title"> {{ t.title }} </p>
+                <p id="notes"> {{ t.notes }} </p>
+                <p id="date"> {{ t.dueDate }} </p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}

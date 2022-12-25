@@ -1,0 +1,10 @@
+{% extends "todoapp/layout.html" %}
+{% load static %}
+
+{% block body %}
+<section>
+    {% for i in todos %}
+        <div> {{ i.title }} </div>
+    {% endfor %}
+</section>
+{% endblock %}

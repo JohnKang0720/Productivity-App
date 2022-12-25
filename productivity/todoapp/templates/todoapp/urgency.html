@@ -1,0 +1,123 @@
+{% extends "todoapp/layout.html" %}
+{% load static %}
+
+{% block body %}
+<section class="urgency-div">
+    <div>
+        <h3> Urgent Tasks </h3>
+        {% for t in urgent %}
+        <div class="todo">
+            <strong> {{ t.title }} </strong>
+            <p> {{ t.notes }} </p>
+            <p> {{ t.dueDate }} </p>
+            <div>
+                <button onclick="editTodo('{{ t.id }}')" class="btn btn-success"> Edit Todo </button>
+                <div id="edit-div">
+                </div>
+            </div>
+            <div>
+                <select name="folder" id="folders">
+                    {% for i in user.folders.all %}
+                    <option value="{{ i.title }}"> {{ i.title }} </option>
+                    {% endfor %}
+                </select>
+                <button onclick="addToFolder('{{ t.id }}', '{{t.title}}')" class="btn btn-secondary"> Add to Folder </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        <h3> Non-Urgent Tasks </h3>
+        {% for t in nonurgent %}
+        <div class="todo"> 
+            <strong> {{ t.title }} </strong>
+            <p> {{ t.notes }} </p>
+            <p> {{ t.dueDate }} </p>
+            <div>
+                <button onclick="editTodo('{{ t.id }}')" class="btn btn-success"> Edit Todo </button>
+                <div id="edit-div">
+                </div>
+            </div>
+            <div>
+                <select name="folder" id="folders">
+                    {% for i in user.folders.all %}
+                    <option value="{{ i.title }}"> {{ i.title }} </option>
+                    {% endfor %}
+                </select>
+                <button onclick="addToFolder('{{ t.id }}', '{{t.title}}')" class="btn btn-secondary"> Add to Folder </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        <h3> Due next week </h3>
+        {% for t in nextweek %}
+        <div class="todo"> 
+            <strong> {{ t.title }} </strong>
+            <p> {{ t.notes }} </p>
+            <p> {{ t.dueDate }} </p>
+            <div>
+                <button onclick="editTodo('{{ t.id }}')" class="btn btn-success"> Edit Todo </button>
+                <div id="edit-div">
+                </div>
+            </div>
+            <div>
+                <select name="folder" id="folders">
+                    {% for i in user.folders.all %}
+                    <option value="{{ i.title }}"> {{ i.title }} </option>
+                    {% endfor %}
+                </select>
+                <button onclick="addToFolder('{{ t.id }}', '{{t.title}}')" class="btn btn-secondary"> Add to Folder </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        <h3> Due next month </h3>
+        {% for t in nextmonth %}
+        <div class="todo"> 
+            <strong> {{ t.title }} </strong>
+            <p> {{ t.notes }} </p>
+            <p> {{ t.dueDate }} </p>
+            <div>
+                <button onclick="editTodo('{{ t.id }}')" class="btn btn-success"> Edit Todo </button>
+                <div id="edit-div">
+                </div>
+            </div>
+            <div>
+                <select name="folder" id="folders">
+                    {% for i in user.folders.all %}
+                    <option value="{{ i.title }}"> {{ i.title }} </option>
+                    {% endfor %}
+                </select>
+                <button onclick="addToFolder('{{ t.id }}', '{{t.title}}')" class="btn btn-secondary"> Add to Folder </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        <h3> Due tomorrow/few days </h3>
+        {% for t in nextday %}
+        <div class="todo"> 
+            <strong> {{ t.title }} </strong>
+            <p> {{ t.notes }} </p>
+            <p> {{ t.dueDate }} </p>
+            <div>
+                <button onclick="editTodo('{{ t.id }}')" class="btn btn-success"> Edit Todo </button>
+                <div id="edit-div">
+                </div>
+            </div>
+            <div>
+                <select name="folder" id="folders">
+                    {% for i in user.folders.all %}
+                    <option value="{{ i.title }}"> {{ i.title }} </option>
+                    {% endfor %}
+                </select>
+                <button onclick="addToFolder('{{ t.id }}', '{{t.title}}')" class="btn btn-secondary"> Add to Folder </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+{% endblock %}

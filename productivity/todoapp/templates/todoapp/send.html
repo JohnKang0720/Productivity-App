@@ -1,0 +1,27 @@
+{% extends "todoapp/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="send-div">
+        <h1> Send Tasks </h1>
+        <form>
+            <div>  
+                <p> Recipient: </p>
+                <input class="form-control" type="text" id="username">
+            </div>
+            <div> 
+                <p> Task: </p>
+                <input class="form-control" type="text" id="task">
+            </div> 
+            <div> 
+                <p> Notes: </p>
+                <input class="form-control" type="text" id="note">
+            </div> 
+            <div>  
+                <p> Due date: </p>
+                <input class="form-control" type="text" id="date">
+            </div> 
+            <button onclick="sendTodo()" class="btn btn-primary"> Send </button>
+        </form>
+    </div>
+{% endblock %}
