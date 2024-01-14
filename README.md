@@ -1,2 +1,2 @@
-# Productivity-App
-Full-stack Productivity Application
+# StudyPro
+Full-stack Django productivity app / task manager program. 
